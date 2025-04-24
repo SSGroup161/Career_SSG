@@ -1,0 +1,21 @@
+{
+    "name": "SS Group",
+    "short_name": "SS Group",
+    "description": "SS Group adalah perusahaan terkemuka di Indonesia yang menaungi berbagai brand kecantikan, fashion, dan perawatan pribadi, termasuk SS Skin, SS Your Makeup, dan Shellasaukia.co. Kami berkomitmen untuk menghadirkan produk skincare, kosmetik, dan fashion berkualitas tinggi yang memenuhi kebutuhan kecantikan Anda. Dari skincare premium, makeup trendi, hingga fashion stylish, SS Group adalah destinasi terbaik untuk tampil percaya diri. Temukan koleksi eksklusif kami dan wujudkan gaya terbaik Anda bersama kami hari ini!",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#D2AC47",
+    "icons": [
+        {
+            "src": "/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

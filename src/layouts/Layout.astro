@@ -1,22 +1,94 @@
+---
+const { title, description, image, url, keywords } = Astro.props;
+import Navbar from "../components/ReactIslands/Navbar";
+import Footer from "../components/Footer.astro";
+import AOSinit from "../components/ReactIslands/AOSinit";
+import "../styles/global.css";
+
+const siteTitle = title
+    ? `${title} | Karir di SS Group - Beauty & Fashion`
+    : "Karir di SS Group - Beauty & Fashion | Bangun Kariermu Bersama Kami";
+
+const siteDescription =
+    description ||
+    "Temukan peluang karir terbaik di SS Group, perusahaan yang menaungi berbagai brand kecantikan dan fashion terkemuka seperti SS Skin, SS Your Makeup, dan Shellasaukia.co. Bergabunglah dengan tim kami dan kembangkan potensimu di industri beauty & fashion bersama lingkungan kerja yang profesional, kreatif, dan inspiratif.";
+
+const siteImage = image || "https://ssgroup.id/Shellasaukia.png";
+const siteUrl = url || "https://career.ssgroup.id";
+const siteKeywords =
+    keywords ||
+    "karir SS Group, lowongan kerja SS Group, kerja di industri kecantikan, lowongan kerja fashion, shella saukia group, beauty career, fashion career, ss skin career, ss your makeup career, karir ssgroup";
+
+const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    image: siteImage,
+    publisher: {
+        "@type": "Organization",
+        name: "SS Group",
+        logo: "https://ssgroup.id/SSG.svg",
+    },
+};
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content={Astro.generator} />
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+        <title>{siteTitle}</title>
+        <meta name="description" content={siteDescription} />
+        <meta name="keywords" content={siteKeywords} />
+        <meta name="theme-color" content="#d2ac47" />
+        <link rel="canonical" href={siteUrl} />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        <!-- Open Graph -->
+        <meta property="og:locale" content="id_ID" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={siteTitle} />
+        <meta property="og:description" content={siteDescription} />
+        <meta property="og:image" content={siteImage} />
+        <meta property="og:image:alt" content={siteTitle} />
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={siteTitle} />
+        <meta name="twitter:description" content={siteDescription} />
+        <meta name="twitter:image" content={siteImage} />
+        <meta name="twitter:url" content={siteUrl} />
+
+        <!-- ✅ Structured Data Schema -->
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(structuredData)}
+        />
+
+        <link rel="icon" type="image/svg+xml" href="/SSG.svg" />
+    </head>
+    <body>
+        <Navbar client:load />
+        <AOSinit client:load />
+        <slot />
+        <Footer />
+
+        <script>
+            if ("scrollRestoration" in history) {
+                history.scrollRestoration = "manual";
+            }
+
+            window.addEventListener("load", () => {
+                window.scrollTo(0, 0);
+            });
+        </script>
+    </body>
+</html>

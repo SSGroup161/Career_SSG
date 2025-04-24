@@ -1,0 +1,83 @@
+---
+import { Collapse } from "antd";
+
+import Layout from "../../layouts/Layout.astro";
+
+const items = [
+    {
+        key: "1",
+        label: "How to order?",
+        children: `You can find Shellasaukia Skin products at our marketplace Shopee : ssskinid, TikTok Shop: ssskin.id, Tokopedia: SSSKIN.ID or you can contact +62818788348 on Whatsapp. Visit our website www.shellasaukiaskin.com.`,
+    },
+    {
+        key: "2",
+        label: "How to order via website?",
+        children: `You can visit and choose product, follow the steps at www.ssgroup.id. You can use your computer, laptop, or smartphone to access the website.`,
+    },
+    {
+        key: "3",
+        label: "Does Shellasaukia Skin provide consulting service?",
+        children: `If you want to consult, contact us via SSSKIN official WhatsApp at +62 818788348 to connect directly with our Customer Service.`,
+    },
+    {
+        key: "4",
+        label: "Can I see the pricelist of Shellasaukia Skin products?",
+        children: `You can click www.shellasaukiaskin.com/product to directly connect with our catalog. For more information, contact +62818788348 via Whatsapp.`,
+    },
+    {
+        key: "5",
+        label: "Do Shellasaukia Skin officially registered by BPOM?",
+        children: `Yes, all products of Shellasaukia Skin have been officially registered in BPOM. You can verify the BPOM number of each product.`,
+    },
+    {
+        key: "6",
+        label: "Is Shellasaukia Skin product halal?",
+        children: `Yes, it is. Shellasaukia Skin only uses natural ingredients and does not contain non-halal materials.`,
+    },
+    {
+        key: "7",
+        label: "Is Shellasaukia Skin suitable for sensitive skin types?",
+        children: `The formula of Shellasaukia Skin was designed to be suitable for all skin types, including sensitive skin.`,
+    },
+    {
+        key: "8",
+        label: "Why my face became rough after using Shellasaukia Skin for a week?",
+        children: `That may be a sign of detoxification. It's part of the skin's adaptation process, especially if you've previously used products with heavy chemicals. This usually normalizes in 4-6 weeks.`,
+    },
+    {
+        key: "9",
+        label: "Is it safe to continue using Shellasaukia Skin after skin roughness?",
+        children: `Yes, it's safe to continue. Regular use will help the adaptation process and improve the skin condition over time.`,
+    },
+    {
+        key: "10",
+        label: "Why there has been no change after using SSSKIN for one week?",
+        children: `Natural products take time to show results. It typically takes 6–8 weeks. Skin response also depends on skin type, condition severity, and skincare habits.`,
+    },
+    {
+        key: "11",
+        label: "Can Shellasaukia Skin be used with other beauty products?",
+        children: `Yes, SSSKIN can be combined with other beauty products, but we don't recommend mixing with heavy-chemical products. For best results, use the full SSSKIN treatment.`,
+    },
+];
+
+const title = "FAQ SS Group - Pertanyaan Umum tentang Produk & Layanan Kami";
+const desc =
+    "Temukan jawaban atas pertanyaan umum mengenai produk, pemesanan, konsultasi, hingga keamanan dan kehalalan produk dari SS Group. Dapatkan informasi lengkap dan terpercaya di halaman FAQ kami.";
+const url = "https://ssgroup.id/legal/faq";
+const keywords =
+    "FAQ SS Group, pertanyaan umum SS Group, ssgroup faq, produk ssgroup, SSSKIN, skincare Indonesia, beauty brand, tanya jawab, konsultasi produk, cara order";
+---
+
+<Layout title={title} description={desc} image="" url={url} keyword={keywords}>
+    <section class="w-full flex items-center flex-col py-24 md:py-32 2xl:py-40">
+        <h1
+            class="text-3xl font-poppins mb-8 font-medium text-[#444341] uppercase"
+        >
+            Faq
+        </h1>
+        <div class="w-80 md:w-[40rem] font-roboto">
+            <Collapse client:only="react" accordion items={items} />
+        </div>
+    </section>
+</Layout>

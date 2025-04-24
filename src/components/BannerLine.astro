@@ -1,0 +1,29 @@
+---
+import "../styles/global.css";
+const logos = Array(15).fill("/SSGroup-White.svg");
+---
+
+<section class={`w-full overflow-hidden bg-primary`}>
+    <div class="flex w-max animate-marquee space-x-8 py-8">
+        {
+            logos.map((logo) => (
+                <img
+                    src={logo}
+                    alt="SS Group"
+                    class="h-6 object-contain"
+                    loading="lazy"
+                />
+            ))
+        }
+        {
+            logos.map((logo) => (
+                <img
+                    src={logo}
+                    alt="SS Group"
+                    class="h-6 object-contain"
+                    loading="lazy"
+                />
+            ))
+        }
+    </div>
+</section>

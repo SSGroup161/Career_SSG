@@ -1,0 +1,237 @@
+---
+
+---
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const scrollToTopBtn = document.querySelector("#scrollToTop");
+        if (scrollToTopBtn) {
+            scrollToTopBtn.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+    });
+</script>
+
+<section class="w-full bg-primary p-16">
+    <div class="container w-full flex flex-col gap-20 m-auto max-w-7xl">
+        <div
+            class="w-full flex flex-col md:flex-row justify-between items-start"
+        >
+            <div class="max-w-lg gap-8 flex flex-col">
+                <img
+                    src="/SSGroup-White.svg"
+                    alt="SSGroup"
+                    loading="lazy"
+                    class="w-60 md:w-72"
+                />
+                <h2
+                    class="font-poppins text-white font-light text-sm md:text-base"
+                >
+                    SS Group offers Indonesian brands like Shellasaukia.co, SS
+                    Skin, and SS Your Make Up, featuring beauty and fashion
+                    products.
+                </h2>
+            </div>
+            <div class="mt-8 md:mt-0 m-auto md:m-0">
+                <div
+                    class="p-4 rounded-full border-2 border-white cursor-pointer group hover:scale-110 transition-all duration-300"
+                    id="scrollToTop"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="41"
+                        height="41"
+                        viewBox="0 0 41 41"
+                        fill="none"
+                        class="group-hover:scale-150 transition-all duration-500 ease-in-out"
+                    >
+                        <path
+                            d="M20.0086 32.5227L20.0373 7.5227M20.0373 7.5227L10.0265 16.8862M20.0373 7.5227L30.0265 16.9092"
+                            stroke="white"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="w-full grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-0">
+            <div class="flex flex-col gap-4">
+                <h2 class="font-poppins text-xl text-white font-medium">
+                    Information
+                </h2>
+                <ul
+                    class="font-poppins md:text-lg text-white font-light flex flex-col gap-2"
+                >
+                    <li>
+                        <a
+                            href="/legal/faq"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >FAQ's</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/legal/terms-conditions"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >Terms & Conditions</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/legal/privacy-policy"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >Privacy Policy</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h2 class="font-poppins text-xl text-white font-medium">
+                    Get To Known us
+                </h2>
+                <ul
+                    class="font-poppins md:text-lg text-white font-light flex flex-col gap-2"
+                >
+                    <li>
+                        <a
+                            href="https://ssgroup.id/about"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >About Us</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://ssgroup.id/news"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >News & Event</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="/"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >Career</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h2 class="font-poppins text-xl text-white font-medium">
+                    Our Brand
+                </h2>
+                <ul
+                    class="font-poppins md:text-lg text-white font-light flex flex-col gap-2"
+                >
+                    <li>
+                        <a
+                            href="https://ssgroup.id/brand/ss-skin"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >SS Skin</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://ssgroup.id/brand/ss-your-make-up"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >SS Your Make Up</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://ssgroup.id/brand/shellasaukia-co"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >Shellasaukia.co</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h2 class="font-poppins text-xl text-white font-medium">
+                    Get In Touch
+                </h2>
+                <ul
+                    class="font-poppins md:text-lg text-white font-light flex flex-col gap-2"
+                >
+                    <li>
+                        <a
+                            href="mailto:cs@ssgroup.id"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >cs@ssgroup.id</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://wa.me/6285121045083"
+                            class="hover:underline transition-all duration-500 ease-in-out"
+                            >+62-851-2104-5083</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="flex flex-col gap-8">
+            <div class="w-full h-[1px] bg-white"></div>
+            <div
+                class="flex flex-col md:flex-row w-full items-start gap-4 md:gap-0 md:items-center justify-between"
+            >
+                <h2 class="text-white font-poppins">
+                    All Rights Reserved ©2025 SS GROUP | PT Abil Mannaf
+                    Perkasa.
+                </h2>
+                <div class="flex items-center gap-4">
+                    <a
+                        href="https://www.linkedin.com/company/ssgroup1/posts/?feedView=all"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="SS Group LinkedIn"
+                    >
+                        <div class="p-2 bg-white rounded-full">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="30"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M9.429 8.969H13.143V10.819C13.678 9.755 15.05 8.799 17.111 8.799C21.062 8.799 22 10.917 22 14.803V22H18V15.688C18 13.475 17.465 12.227 16.103 12.227C14.214 12.227 13.429 13.572 13.429 15.687V22H9.429V8.969ZM2.57 21.83H6.57V8.799H2.57V21.83ZM7.143 4.55C7.14315 4.88528 7.07666 5.21724 6.94739 5.52659C6.81812 5.83594 6.62865 6.11651 6.39 6.352C6.15064 6.59012 5.86671 6.77874 5.55442 6.90708C5.24214 7.03543 4.90763 7.10098 4.57 7.1C3.8896 7.09847 3.23691 6.83029 2.752 6.353C2.5143 6.11665 2.32553 5.83575 2.1965 5.52637C2.06746 5.21699 2.00069 4.88521 2 4.55C2 3.873 2.27 3.225 2.753 2.747C3.2367 2.26788 3.89018 1.99938 4.571 2C5.253 2 5.907 2.269 6.39 2.747C6.873 3.225 7.143 3.873 7.143 4.55Z"
+                                    fill="#D2AC47"></path>
+                            </svg>
+                        </div>
+                    </a>
+                    <a
+                        href="https://www.instagram.com/ssgroupindonesia/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="SS Group Instagram"
+                    >
+                        <div class="p-2 bg-white rounded-full">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="30"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M12 8.75C11.138 8.75 10.3114 9.09241 9.7019 9.7019C9.09241 10.3114 8.75 11.138 8.75 12C8.75 12.862 9.09241 13.6886 9.7019 14.2981C10.3114 14.9076 11.138 15.25 12 15.25C12.862 15.25 13.6886 14.9076 14.2981 14.2981C14.9076 13.6886 15.25 12.862 15.25 12C15.25 11.138 14.9076 10.3114 14.2981 9.7019C13.6886 9.09241 12.862 8.75 12 8.75Z"
+                                    fill="#D2AC47"></path>
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M6.77 3.08177C10.246 2.6967 13.754 2.6967 17.23 3.08177C19.129 3.29377 20.66 4.78877 20.883 6.69477C21.2949 10.2194 21.2949 13.7801 20.883 17.3048C20.66 19.2108 19.129 20.7058 17.231 20.9188C13.7546 21.3039 10.2464 21.3039 6.77 20.9188C4.871 20.7058 3.34 19.2108 3.117 17.3058C2.70498 13.7808 2.70498 10.2198 3.117 6.69477C3.34 4.78877 4.871 3.29377 6.77 3.08177ZM17 5.99977C16.7348 5.99977 16.4804 6.10513 16.2929 6.29267C16.1054 6.4802 16 6.73456 16 6.99977C16 7.26499 16.1054 7.51934 16.2929 7.70688C16.4804 7.89442 16.7348 7.99977 17 7.99977C17.2652 7.99977 17.5196 7.89442 17.7071 7.70688C17.8946 7.51934 18 7.26499 18 6.99977C18 6.73456 17.8946 6.4802 17.7071 6.29267C17.5196 6.10513 17.2652 5.99977 17 5.99977ZM7.25 11.9998C7.25 10.74 7.75044 9.53181 8.64124 8.64102C9.53204 7.75022 10.7402 7.24977 12 7.24977C13.2598 7.24977 14.468 7.75022 15.3588 8.64102C16.2496 9.53181 16.75 10.74 16.75 11.9998C16.75 13.2596 16.2496 14.4677 15.3588 15.3585C14.468 16.2493 13.2598 16.7498 12 16.7498C10.7402 16.7498 9.53204 16.2493 8.64124 15.3585C7.75044 14.4677 7.25 13.2596 7.25 11.9998Z"
+                                    fill="#D2AC47"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

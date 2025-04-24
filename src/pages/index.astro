@@ -1,11 +1,435 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import BannerLine from "../components/BannerLine.astro";
+import CountUp from "../components/ReactIslands/CountUp";
+import TeamSlider from "../components/ReactIslands/TeamSlider";
+import { HoverEffect } from "../components/ReactIslands/CardHover";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Shellasaukia from "../../public/home/Shellasaukia.png";
+import HomeAsset1 from "../../public/home/Home1.png";
+import HomeAsset2 from "../../public/home/Home-section2-1.png";
+import HomeAsset3 from "../../public/home/Home-section2-2.png";
+
+export const projects = [
+    {
+        title: "1. Submit",
+        description:
+            "Apply for the position by submitting your resume and completing.",
+        icon: "/home/icon/1.png",
+    },
+    {
+        title: "2. Screening",
+        description:
+            "Evaluate qualifications, assess skills, and determine suitability for the role.",
+        icon: "/home/icon/2.png",
+    },
+    {
+        title: "3. Technical Test",
+        description:
+            "Assess skills, evaluate fit, and analyze potential for success in role.",
+        icon: "/home/icon/3.png",
+    },
+    {
+        title: "4. Interview HR",
+        description:
+            "Evaluate potential and suitability through discussion with the HR team.",
+        icon: "/home/icon/4.png",
+    },
+    {
+        title: "5. Interview User",
+        description: "Meet the team, assess qualifications, and evaluate fit.",
+        icon: "/home/icon/5.png",
+    },
+    {
+        title: "6. Offering",
+        description:
+            "Receive the job offer, finalize details, and confirm your acceptance.",
+        icon: "/home/icon/6.png",
+    },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Layout title="Grow Together with SS Group">
+    <section
+        class="w-full flex items-center justify-center h-[100dvh] py-20 md:py-0"
+    >
+        <div
+            class="container h-full flex items-center justify-center px-32 gap-20"
+        >
+            <div class="flex flex-1 flex-col gap-8">
+                <div
+                    class="flex items-center gap-4 p-2 md:p-3 lg:p-3 bg-[#F8F8F8] rounded-full max-w-sm justify-center"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="24"
+                        viewBox="0 0 25 24"
+                        fill="none"
+                    >
+                        <path
+                            d="M16.0234 6C16.0234 4.114 16.0234 3.172 15.4374 2.586C14.8514 2 13.9094 2 12.0234 2C10.1374 2 9.19544 2 8.60944 2.586C8.02344 3.172 8.02344 4.114 8.02344 6M2.02344 14C2.02344 10.229 2.02344 8.343 3.19544 7.172C4.36744 6.001 6.25244 6 10.0234 6H14.0234C17.7944 6 19.6804 6 20.8514 7.172C22.0224 8.344 22.0234 10.229 22.0234 14C22.0234 17.771 22.0234 19.657 20.8514 20.828C19.6794 21.999 17.7944 22 14.0234 22H10.0234C6.25244 22 4.36644 22 3.19544 20.828C2.02444 19.656 2.02344 17.771 2.02344 14Z"
+                            stroke="#D2AC47"
+                            stroke-width="1.5"></path>
+                        <path
+                            d="M17.0234 9C17.0234 9.26522 16.9181 9.51957 16.7305 9.70711C16.543 9.89464 16.2887 10 16.0234 10C15.7582 10 15.5039 9.89464 15.3163 9.70711C15.1288 9.51957 15.0234 9.26522 15.0234 9C15.0234 8.73478 15.1288 8.48043 15.3163 8.29289C15.5039 8.10536 15.7582 8 16.0234 8C16.2887 8 16.543 8.10536 16.7305 8.29289C16.9181 8.48043 17.0234 8.73478 17.0234 9ZM9.02344 9C9.02344 9.26522 8.91808 9.51957 8.73054 9.70711C8.54301 9.89464 8.28865 10 8.02344 10C7.75822 10 7.50387 9.89464 7.31633 9.70711C7.12879 9.51957 7.02344 9.26522 7.02344 9C7.02344 8.73478 7.12879 8.48043 7.31633 8.29289C7.50387 8.10536 7.75822 8 8.02344 8C8.28865 8 8.54301 8.10536 8.73054 8.29289C8.91808 8.48043 9.02344 8.73478 9.02344 9Z"
+                            fill="#D2AC47"></path>
+                    </svg>
+                    <h2
+                        class="text-[#707070] font-poppins text-xs lg:text-sm 2xl:text-base"
+                    >
+                        Shape your success with SS Group
+                    </h2>
+                </div>
+                <h1
+                    class="font-poppins text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium"
+                >
+                    Grow Together with
+                    <span class="text-primary"> SS Group </span>{" "}
+                </h1>
+                <h2
+                    class="font-poppins text-[#707070] md:max-w-[12rem] lg:max-w-xs lg:text-sm xl:text-sm 2xl:text-base"
+                >
+                    Join SS Group and thrive in a culture of innovation,
+                    creativity, and success. Be part of an extraordinary team
+                    making an impact.
+                </h2>
+                <div class="">
+                    <div class="relative group">
+                        <a href="/search">
+                            <button
+                                class="relative inline-block p-px font-semibold leading-6 text-white bg-primary shadow-2xl cursor-pointer rounded-lg lg:rounded-2xl shadow-primary transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-amber-400"
+                            >
+                                <span
+                                    class="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-amber-300 to-amber-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                                ></span>
+                                <span
+                                    class="relative z-10 block px-6 py-3 rounded-2xl bg-primary"
+                                >
+                                    <div
+                                        class="relative z-10 flex items-center space-x-3"
+                                    >
+                                        <span
+                                            class="transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white text-xs xl:text-sm 2xl:text-base"
+                                        >
+                                            View Jobs
+                                        </span>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="currentColor"
+                                            class="w-5 h-5 2xl:w-7 2xl:h-7 transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white"
+                                        >
+                                            <path
+                                                d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                            ></path>
+                                        </svg>
+                                    </div>
+                                </span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1">
+                <div class="flex items-start justify-end relative">
+                    <Image
+                        src={Shellasaukia}
+                        alt={"Shellasaukia"}
+                        class:list="rounded-2xl w-100 shadow-lg"
+                        loading={"eager"}
+                    />
+                    <div
+                        class="bg-[#292929] flex flex-col gap-14 text-white font-poppins absolute -top-10 left-16 p-6 rounded-2xl max-w-44 shadow-lg"
+                    >
+                        <div class="flex">
+                            <CountUp
+                                from={0}
+                                to={94}
+                                separator=","
+                                direction="up"
+                                duration={1}
+                                className="count-up-text text-2xl xl:text-3xl 2xl:text-4xl"
+                                client:load
+                            />{" "}
+                            <span class="text-2xl xl:text-3xl 2xl:text-4xl">
+                                %
+                            </span>
+                        </div>
+                        <p class="text-sm">
+                            94% of employees feel welcomed in our team.
+                        </p>
+                        <Image
+                            src={HomeAsset1}
+                            alt="HomeAsset1"
+                            loading={"eager"}
+                            class:list="rounded-lg w-20 absolute -right-8 shadow-lg"
+                        />
+                    </div>
+                    <div
+                        class="bg-white rounded-2xl p-6 flex flex-col gap-14 absolute -bottom-10 left-24 max-w-40 items-end shadow-lg"
+                    >
+                        <div class="bg-primary p-4 rounded-full w-fit h-fit">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="31"
+                                height="30"
+                                viewBox="0 0 41 40"
+                                fill="none"
+                            >
+                                <path
+                                    d="M28.014 5.875C28.014 5.47718 28.172 5.09564 28.4533 4.81434C28.7346 4.53304 29.1162 4.375 29.514 4.375H34.514C34.9118 4.375 35.2933 4.53304 35.5746 4.81434C35.8559 5.09564 36.014 5.47718 36.014 5.875V10.875C36.014 11.2728 35.8559 11.6544 35.5746 11.9357C35.2933 12.217 34.9118 12.375 34.514 12.375C34.1162 12.375 33.7346 12.217 33.4533 11.9357C33.172 11.6544 33.014 11.2728 33.014 10.875V9.495L24.074 18.435C23.7927 18.7159 23.4115 18.8737 23.014 18.8737C22.6165 18.8737 22.2352 18.7159 21.954 18.435L17.014 13.495L8.57398 21.935C8.43666 22.0824 8.27105 22.2006 8.08706 22.2826C7.90306 22.3645 7.70443 22.4086 7.50302 22.4122C7.30162 22.4157 7.10156 22.3787 6.91478 22.3032C6.72801 22.2278 6.55834 22.1155 6.4159 21.9731C6.27346 21.8306 6.16118 21.661 6.08573 21.4742C6.01029 21.2874 5.97324 21.0874 5.9768 20.886C5.98035 20.6845 6.02443 20.4859 6.10642 20.3019C6.1884 20.1179 6.30661 19.9523 6.45398 19.815L15.954 10.315C16.2352 10.0341 16.6165 9.87632 17.014 9.87632C17.4115 9.87632 17.7927 10.0341 18.074 10.315L23.014 15.255L30.894 7.375H29.514C29.1162 7.375 28.7346 7.21696 28.4533 6.93566C28.172 6.65436 28.014 6.27282 28.014 5.875ZM7.51398 28.375C7.9118 28.375 8.29334 28.533 8.57464 28.8143C8.85594 29.0956 9.01398 29.4772 9.01398 29.875V34.875C9.01398 35.2728 8.85594 35.6544 8.57464 35.9357C8.29334 36.217 7.9118 36.375 7.51398 36.375C7.11615 36.375 6.73462 36.217 6.45332 35.9357C6.17201 35.6544 6.01398 35.2728 6.01398 34.875V29.875C6.01398 29.4772 6.17201 29.0956 6.45332 28.8143C6.73462 28.533 7.11615 28.375 7.51398 28.375ZM17.014 23.875C17.014 23.4772 16.8559 23.0956 16.5746 22.8143C16.2933 22.533 15.9118 22.375 15.514 22.375C15.1162 22.375 14.7346 22.533 14.4533 22.8143C14.172 23.0956 14.014 23.4772 14.014 23.875V34.875C14.014 35.2728 14.172 35.6544 14.4533 35.9357C14.7346 36.217 15.1162 36.375 15.514 36.375C15.9118 36.375 16.2933 36.217 16.5746 35.9357C16.8559 35.6544 17.014 35.2728 17.014 34.875V23.875ZM23.514 26.375C23.9118 26.375 24.2933 26.533 24.5746 26.8143C24.8559 27.0956 25.014 27.4772 25.014 27.875V34.875C25.014 35.2728 24.8559 35.6544 24.5746 35.9357C24.2933 36.217 23.9118 36.375 23.514 36.375C23.1162 36.375 22.7346 36.217 22.4533 35.9357C22.172 35.6544 22.014 35.2728 22.014 34.875V27.875C22.014 27.4772 22.172 27.0956 22.4533 26.8143C22.7346 26.533 23.1162 26.375 23.514 26.375ZM33.014 19.875C33.014 19.4772 32.8559 19.0956 32.5746 18.8143C32.2933 18.533 31.9118 18.375 31.514 18.375C31.1162 18.375 30.7346 18.533 30.4533 18.8143C30.172 19.0956 30.014 19.4772 30.014 19.875V34.875C30.014 35.2728 30.172 35.6544 30.4533 35.9357C30.7346 36.217 31.1162 36.375 31.514 36.375C31.9118 36.375 32.2933 36.217 32.5746 35.9357C32.8559 35.6544 33.014 35.2728 33.014 34.875V19.875Z"
+                                    fill="white"></path>
+                            </svg>
+                        </div>
+                        <p class="font-poppins text-sm">Rapid Career Growth</p>
+                    </div>
+                    <div
+                        class="bg-white p-3 flex absolute -bottom-6 -right-10 items-center gap-2 rounded-full shadow-lg"
+                    >
+                        <div class="bg-primary w-fit h-fit p-2 rounded-full">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="25"
+                                height="24"
+                                viewBox="0 0 25 24"
+                                fill="none"
+                            >
+                                <g clip-path="url(#clip0_950_1410)">
+                                    <path
+                                        d="M21.1966 6.86014C19.1966 6.26014 17.1366 6.82014 15.8066 8.15014L12.9766 10.6601L11.4566 12.0001H11.4666L8.77656 14.3901C7.96656 15.2001 6.82656 15.5401 5.65656 15.3101C5.03661 15.1805 4.46612 14.8778 4.01124 14.437C3.55637 13.9963 3.23574 13.4357 3.08656 12.8201C2.96376 12.3211 2.95604 11.8006 3.06399 11.2981C3.17194 10.7956 3.39273 10.3243 3.70967 9.91966C4.0266 9.51505 4.43139 9.18781 4.89341 8.96268C5.35544 8.73755 5.86261 8.62041 6.37656 8.62014C7.28656 8.62014 8.13656 8.97014 8.81656 9.65014L9.28656 10.0601C9.66656 10.4001 10.2366 10.4001 10.6166 10.0601C11.0666 9.66014 11.0666 8.96014 10.6166 8.56014L10.1966 8.20014C9.69579 7.69747 9.10036 7.29902 8.44469 7.02783C7.78902 6.75664 7.0861 6.61807 6.37656 6.62014C3.39656 6.62014 0.976562 9.04014 0.976562 12.0001C0.976562 14.9601 3.39656 17.3801 6.37656 17.3801C7.81656 17.3801 9.17656 16.8201 10.1466 15.8501L12.9766 13.3501L12.9866 13.3601L14.4966 12.0001H14.4866L17.1766 9.61014C17.9866 8.80014 19.1266 8.46014 20.2966 8.69014C21.5466 8.94014 22.5766 9.94014 22.8666 11.1801C22.9894 11.6792 22.9971 12.1997 22.8891 12.7022C22.7812 13.2047 22.5604 13.676 22.2435 14.0806C21.9265 14.4852 21.5217 14.8125 21.0597 15.0376C20.5977 15.2627 20.0905 15.3799 19.5766 15.3801C18.6766 15.3801 17.8166 15.0301 17.1366 14.3501L16.6566 13.9301C16.4739 13.766 16.2371 13.6753 15.9916 13.6753C15.746 13.6753 15.5092 13.766 15.3266 13.9301C14.8766 14.3301 14.8766 15.0301 15.3266 15.4301L15.7466 15.8001C16.7616 16.809 18.1355 17.3737 19.5666 17.3701C22.8366 17.3701 25.4266 14.4701 24.8966 11.1201C24.5966 9.13014 23.1266 7.43014 21.1966 6.86014Z"
+                                        fill="white"></path>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_950_1410">
+                                        <rect
+                                            width="24"
+                                            height="24"
+                                            fill="white"
+                                            transform="translate(0.976562)"
+                                        ></rect>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <p class="font-poppins text-sm">
+                            Inclusive Work Culture
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <BannerLine />
+    <section class="w-full flex items-center justify-center py-32">
+        <div class="container flex px-32 gap-32 m-auto">
+            <div class="flex-1 relative flex items-center justify-start">
+                <Image
+                    src={HomeAsset2}
+                    alt={"SSGroup"}
+                    class:list="rounded-2xl w-100 shadow-lg"
+                    loading={"lazy"}
+                />
+                <div class="absolute flex flex-col -right-8 gap-6">
+                    <div class="flex gap-8">
+                        <div
+                            class="bg-[#292929] p-6 text-white font-poppins gap-6 flex flex-col w-40 rounded-2xl shadow-lg"
+                        >
+                            <div class="flex">
+                                <CountUp
+                                    from={0}
+                                    to={500}
+                                    separator=","
+                                    direction="up"
+                                    duration={1}
+                                    className="count-up-text text-2xl xl:text-3xl 2xl:text-4xl"
+                                    client:load
+                                />{" "}
+                                <span class="text-2xl xl:text-3xl 2xl:text-4xl">
+                                    +
+                                </span>
+                            </div>
+                            <p class="text-sm">
+                                Millions of Products Sold Globally.
+                            </p>
+                        </div>
+                        <Image
+                            src={HomeAsset3}
+                            alt={"SSGroup"}
+                            class:list="rounded-2xl w-40 shadow-lg"
+                            loading={"lazy"}
+                        />
+                    </div>
+                    <div
+                        class="bg-white p-3 flex items-center gap-4 rounded-full shadow-lg w-full"
+                    >
+                        <div class="bg-primary w-fit h-fit p-2 rounded-full">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="41"
+                                height="41"
+                                viewBox="0 0 41 41"
+                                fill="none"
+                            >
+                                <path
+                                    d="M15.9102 5.5293H9.24349C7.40254 5.5293 5.91016 7.02168 5.91016 8.86263V15.5293C5.91016 17.3702 7.40254 18.8626 9.24349 18.8626H15.9102C17.7511 18.8626 19.2435 17.3702 19.2435 15.5293V8.86263C19.2435 7.02168 17.7511 5.5293 15.9102 5.5293Z"
+                                    stroke="white"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M12.5762 18.8623V25.529C12.5762 26.413 12.9274 27.2609 13.5525 27.886C14.1776 28.5111 15.0255 28.8623 15.9095 28.8623H22.5762"
+                                    stroke="white"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path
+                                    d="M32.5762 22.1963H25.9095C24.0686 22.1963 22.5762 23.6887 22.5762 25.5296V32.1963C22.5762 34.0372 24.0686 35.5296 25.9095 35.5296H32.5762C34.4171 35.5296 35.9095 34.0372 35.9095 32.1963V25.5296C35.9095 23.6887 34.4171 22.1963 32.5762 22.1963Z"
+                                    stroke="white"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <p class="font-poppins text-lg">
+                            Professional Development
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-1 flex-col gap-8 justify-center">
+                <h2
+                    class="font-poppins text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-medium"
+                >
+                    <span class="text-primary"> Brilliant </span>{" "}
+                    Career in Beauty & Fashion!
+                </h2>
+                <h2
+                    class="font-poppins text-[#707070] lg:text-sm xl:text-sm 2xl:text-base"
+                >
+                    Build a brilliant career in beauty & fashion by joining SS
+                    Group! Bring your dreams to life as part of a team that
+                    creates Indonesia’s top beauty, fashion, and self-care
+                    products while growing in a supportive, innovative, and
+                    creative environment. Your journey starts here!
+                </h2>
+                <div class="">
+                    <div class="relative group">
+                        <a href="https://ssgroup.id/about">
+                            <button
+                                class="relative inline-block p-px font-semibold leading-6 text-white bg-primary shadow-2xl cursor-pointer rounded-lg lg:rounded-2xl shadow-primary transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-amber-400"
+                            >
+                                <span
+                                    class="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-amber-300 to-amber-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                                ></span>
+                                <span
+                                    class="relative z-10 block px-6 py-3 rounded-2xl bg-primary"
+                                >
+                                    <div
+                                        class="relative z-10 flex items-center space-x-3"
+                                    >
+                                        <span
+                                            class="transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white text-xs xl:text-sm 2xl:text-base"
+                                        >
+                                            About us
+                                        </span>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="currentColor"
+                                            class="w-5 h-5 2xl:w-7 2xl:h-7 transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white"
+                                        >
+                                            <path
+                                                d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                            ></path>
+                                        </svg>
+                                    </div>
+                                </span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="w-full flex items-center justify-center pb-32">
+        <div class="flex m-auto">
+            <TeamSlider client:load />
+        </div>
+    </section>
+    <BannerLine />
+    <section class="w-full flex items-center justify-center py-32">
+        <div class="container flex flex-col px-32 m-auto gap-8">
+            <div class="flex flex-col gap-6 max-w-2xl">
+                <h2
+                    class="font-poppins text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-medium"
+                >
+                    Hiring Process at
+                    <span class="text-primary"> SS Group </span>{" "}
+                </h2>
+                <h2
+                    class="font-poppins text-[#707070] lg:text-sm xl:text-sm 2xl:text-base"
+                >
+                    Join SS Group and embark on a journey where your talents
+                    meet endless possibilities, fostering personal and
+                    professional growth every step of the way.
+                </h2>
+            </div>
+            <HoverEffect items={projects} client:load />
+            <div
+                class="w-full bg-[#f5f5f5] flex items-center p-14 rounded-2xl gap-20"
+            >
+                <h2
+                    class="flex-1 font-poppins text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl text-[#292929]"
+                >
+                    Get Hired Faster Join Our Career Insider
+                </h2>
+                <div class="flex-1 flex flex-col gap-8">
+                    <h2
+                        class="font-poppins text-[#707070] lg:text-sm xl:text-sm 2xl:text-base"
+                    >
+                        Get exclusive job tips, insider trends, and early access
+                        to top opportunities. Join now and get hired faster!
+                    </h2>
+                    <div class="">
+                        <div class="relative group">
+                            <a href="/search">
+                                <button
+                                    class="relative inline-block p-px font-semibold leading-6 text-white bg-primary shadow-2xl cursor-pointer rounded-lg lg:rounded-2xl shadow-primary transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-amber-400"
+                                >
+                                    <span
+                                        class="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-amber-300 to-amber-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                                    ></span>
+                                    <span
+                                        class="relative z-10 block px-6 py-3 rounded-2xl bg-primary"
+                                    >
+                                        <div
+                                            class="relative z-10 flex items-center space-x-3"
+                                        >
+                                            <span
+                                                class="transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white text-xs xl:text-sm 2xl:text-base"
+                                            >
+                                                View Job
+                                            </span>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                fill="currentColor"
+                                                class="w-5 h-5 2xl:w-7 2xl:h-7 transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white"
+                                            >
+                                                <path
+                                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                    </span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section></Layout
+>
