@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import BannerLine from "../components/BannerLine.astro";
 import CountUp from "../components/ReactIslands/CountUp";
-import TeamSlider from "../components/ReactIslands/TeamSlider";
 import { HoverEffect } from "../components/ReactIslands/CardHover";
 
 import Shellasaukia from "../../public/home/Shellasaukia.png";
@@ -52,14 +51,14 @@ export const projects = [
 
 <Layout title="Grow Together with SS Group">
     <section
-        class="w-full flex items-center justify-center h-[100dvh] py-20 md:py-0"
+        class="w-full flex items-center justify-center lg:h-[100dvh] pt-36 md:pt-50 pb-20 lg:pt-0 lg:pb-0"
     >
         <div
-            class="container h-full flex items-center justify-center px-32 gap-20"
+            class="container h-full flex items-center justify-center px-10 md:px-20 xl:px-32 gap-20 flex-col-reverse lg:flex-row"
         >
             <div class="flex flex-1 flex-col gap-8">
                 <div
-                    class="flex items-center gap-4 p-2 md:p-3 lg:p-3 bg-[#F8F8F8] rounded-full max-w-sm justify-center"
+                    class="flex items-center gap-4 p-2 md:p-3 lg:p-3 bg-[#F8F8F8] rounded-full max-w-xs 2xl:max-w-sm justify-center"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +88,7 @@ export const projects = [
                     <span class="text-primary"> SS Group </span>{" "}
                 </h1>
                 <h2
-                    class="font-poppins text-[#707070] md:max-w-[12rem] lg:max-w-xs lg:text-sm xl:text-sm 2xl:text-base"
+                    class="font-poppins text-[#707070] lg:max-w-xs lg:text-sm xl:text-sm 2xl:text-base"
                 >
                     Join SS Group and thrive in a culture of innovation,
                     creativity, and success. Be part of an extraordinary team
@@ -97,7 +96,7 @@ export const projects = [
                 </h2>
                 <div class="">
                     <div class="relative group">
-                        <a href="/search">
+                        <a href="/inside-ssgroup">
                             <button
                                 class="relative inline-block p-px font-semibold leading-6 text-white bg-primary shadow-2xl cursor-pointer rounded-lg lg:rounded-2xl shadow-primary transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-amber-400"
                             >
@@ -113,7 +112,7 @@ export const projects = [
                                         <span
                                             class="transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white text-xs xl:text-sm 2xl:text-base"
                                         >
-                                            View Jobs
+                                            #InsideSSGroup
                                         </span>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -137,11 +136,11 @@ export const projects = [
                     <Image
                         src={Shellasaukia}
                         alt={"Shellasaukia"}
-                        class:list="rounded-2xl w-100 shadow-lg"
+                        class:list="rounded-2xl 2xl:w-100 xl:w-80 lg:w-60 md:w-80  w-60 shadow-lg"
                         loading={"eager"}
                     />
                     <div
-                        class="bg-[#292929] flex flex-col gap-14 text-white font-poppins absolute -top-10 left-16 p-6 rounded-2xl max-w-44 shadow-lg"
+                        class="bg-[#292929] flex flex-col gap-8 md:gap-14 text-white font-poppins absolute -top-10 -left-10 md:-left-20 lg:left-16 p-4 2xl:p-6 rounded-2xl max-w-28 xl:max-w-40 2xl:max-w-44 shadow-lg"
                     >
                         <div class="flex">
                             <CountUp
@@ -157,20 +156,22 @@ export const projects = [
                                 %
                             </span>
                         </div>
-                        <p class="text-sm">
+                        <p class="text-xs xl:text-sm">
                             94% of employees feel welcomed in our team.
                         </p>
                         <Image
                             src={HomeAsset1}
                             alt="HomeAsset1"
                             loading={"eager"}
-                            class:list="rounded-lg w-20 absolute -right-8 shadow-lg"
+                            class:list="rounded-lg w-14 md:w-20 absolute -right-8 shadow-lg "
                         />
                     </div>
                     <div
-                        class="bg-white rounded-2xl p-6 flex flex-col gap-14 absolute -bottom-10 left-24 max-w-40 items-end shadow-lg"
+                        class="bg-white rounded-2xl p-4 2xl:p-6 flex flex-col gap-14 absolute -bottom-10 -left-10 lg:left-24 max-w-30 xl:max-w-36 2xl:max-w-40 items-end shadow-lg"
                     >
-                        <div class="bg-primary p-4 rounded-full w-fit h-fit">
+                        <div
+                            class="bg-primary p-2 xl:p-4 rounded-full w-fit h-fit"
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="31"
@@ -183,10 +184,12 @@ export const projects = [
                                     fill="white"></path>
                             </svg>
                         </div>
-                        <p class="font-poppins text-sm">Rapid Career Growth</p>
+                        <p class="font-poppins text-xs xl:text-sm">
+                            Rapid Career Growth
+                        </p>
                     </div>
                     <div
-                        class="bg-white p-3 flex absolute -bottom-6 -right-10 items-center gap-2 rounded-full shadow-lg"
+                        class="bg-white p-2 xl:p-3 flex absolute -bottom-6 -right-14 xl:-right-10 items-center gap-2 rounded-full shadow-lg"
                     >
                         <div class="bg-primary w-fit h-fit p-2 rounded-full">
                             <svg
@@ -213,7 +216,7 @@ export const projects = [
                                 </defs>
                             </svg>
                         </div>
-                        <p class="font-poppins text-sm">
+                        <p class="font-poppins text-xs xl:text-sm">
                             Inclusive Work Culture
                         </p>
                     </div>
@@ -222,19 +225,25 @@ export const projects = [
         </div>
     </section>
     <BannerLine />
-    <section class="w-full flex items-center justify-center py-32">
-        <div class="container flex px-32 gap-32 m-auto">
-            <div class="flex-1 relative flex items-center justify-start">
+    <section class="w-full flex items-center justify-center py-20 md:py-32">
+        <div
+            class="container flex px-10 md:px-20 xl:px-32 gap-16 md:gap-32 m-auto flex-col lg:flex-row"
+        >
+            <div
+                class="flex-1 relative flex items-center justify-center lg:justify-start"
+            >
                 <Image
                     src={HomeAsset2}
                     alt={"SSGroup"}
-                    class:list="rounded-2xl w-100 shadow-lg"
+                    class:list="rounded-2xl w-60 md:w-80 lg:w-60 xl:w-80 2xl:w-100 shadow-lg"
                     loading={"lazy"}
                 />
-                <div class="absolute flex flex-col -right-8 gap-6">
-                    <div class="flex gap-8">
+                <div
+                    class="absolute flex flex-col bottom-0 md:bottom-1/5 -right-8 gap-2 xl:gap-4 2xl:gap-6"
+                >
+                    <div class="flex gap-2 xl:gap-4 2xl:gap-6">
                         <div
-                            class="bg-[#292929] p-6 text-white font-poppins gap-6 flex flex-col w-40 rounded-2xl shadow-lg"
+                            class="bg-[#292929] p-2 xl:p-4 2xl:p-6 text-white font-poppins gap-6 flex flex-col w-25 xl:w-36 2xl:w-40 rounded-2xl shadow-lg"
                         >
                             <div class="flex">
                                 <CountUp
@@ -250,19 +259,19 @@ export const projects = [
                                     +
                                 </span>
                             </div>
-                            <p class="text-sm">
+                            <p class="text-xs xl:text-sm">
                                 Millions of Products Sold Globally.
                             </p>
                         </div>
                         <Image
                             src={HomeAsset3}
                             alt={"SSGroup"}
-                            class:list="rounded-2xl w-40 shadow-lg"
+                            class:list="rounded-2xl w-25 xl:w-36 2xl:w-40 shadow-lg"
                             loading={"lazy"}
                         />
                     </div>
                     <div
-                        class="bg-white p-3 flex items-center gap-4 rounded-full shadow-lg w-full"
+                        class="bg-white p-1 md:p-2 2xl:p-3 flex items-center gap-2 md:gap-4 rounded-full shadow-lg md:w-full"
                     >
                         <div class="bg-primary w-fit h-fit p-2 rounded-full">
                             <svg
@@ -271,6 +280,7 @@ export const projects = [
                                 height="41"
                                 viewBox="0 0 41 41"
                                 fill="none"
+                                class="w-5 h-5 md:w-8 md:h-8"
                             >
                                 <path
                                     d="M15.9102 5.5293H9.24349C7.40254 5.5293 5.91016 7.02168 5.91016 8.86263V15.5293C5.91016 17.3702 7.40254 18.8626 9.24349 18.8626H15.9102C17.7511 18.8626 19.2435 17.3702 19.2435 15.5293V8.86263C19.2435 7.02168 17.7511 5.5293 15.9102 5.5293Z"
@@ -292,7 +302,9 @@ export const projects = [
                                     stroke-linejoin="round"></path>
                             </svg>
                         </div>
-                        <p class="font-poppins text-lg">
+                        <p
+                            class="font-poppins text-xs md:text-sm xl:text-base 2xl:text-lg"
+                        >
                             Professional Development
                         </p>
                     </div>
@@ -353,14 +365,11 @@ export const projects = [
             </div>
         </div>
     </section>
-    <section class="w-full flex items-center justify-center pb-32">
-        <div class="flex m-auto">
-            <TeamSlider client:load />
-        </div>
-    </section>
     <BannerLine />
-    <section class="w-full flex items-center justify-center py-32">
-        <div class="container flex flex-col px-32 m-auto gap-8">
+    <section class="w-full flex items-center justify-center py-20 md:py-32">
+        <div
+            class="container flex flex-col px-10 md:px-20 xl:px-32 m-auto gap-8"
+        >
             <div class="flex flex-col gap-6 max-w-2xl">
                 <h2
                     class="font-poppins text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-medium"
@@ -378,7 +387,7 @@ export const projects = [
             </div>
             <HoverEffect items={projects} client:load />
             <div
-                class="w-full bg-[#f5f5f5] flex items-center p-14 rounded-2xl gap-20"
+                class="w-full bg-[#f5f5f5] flex flex-col lg:flex-row items-center p-10 md:p-14 rounded-2xl gap-10 md:gap-20"
             >
                 <h2
                     class="flex-1 font-poppins text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl text-[#292929]"
@@ -410,7 +419,7 @@ export const projects = [
                                             <span
                                                 class="transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white text-xs xl:text-sm 2xl:text-base"
                                             >
-                                                View Job
+                                                View Job's
                                             </span>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"

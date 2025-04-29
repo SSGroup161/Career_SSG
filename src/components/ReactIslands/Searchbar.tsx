@@ -15,7 +15,7 @@ export function Searchbar({
 }) {
     const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
 
-    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const intervalRef = useRef<number | null>(null);
     const startAnimation = () => {
         intervalRef.current = setInterval(() => {
             setCurrentPlaceholder((prev) => (prev + 1) % placeholders.length);

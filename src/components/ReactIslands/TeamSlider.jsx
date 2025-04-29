@@ -7,35 +7,50 @@ const teamData = [
     {
         id: 1,
         name: "Hany Fandiyah",
-        description: "A culture built on collaboration and respect",
+        title: "Product Manager",
+        description: "Project and Product Management",
+        course: "MySkill",
+        link_course: "https://myskill.id/",
         image: "/Aboutpage/TeamProduct.png",
         link: "https://www.linkedin.com/in/hany-fandiyah-921122169/",
     },
     {
         id: 2,
         name: "Fanny Fandiyah",
-        description: "Innovation and creativity thrive at SS Group.",
+        title: "Human Capital and General Affairs Officer",
+        description: "SDM Mulai dari Rekrutmen Hingga Terminasi",
+        course: "MySkill",
+        link_course: "https://myskill.id/",
         image: "/Aboutpage/TeamHR2.png",
         link: "https://www.linkedin.com/in/fanny-fandiyah-329271129/",
     },
     {
         id: 3,
-        name: "Zehan Al Ghifari",
-        description: "A dynamic space for personal growth.",
-        image: "/Aboutpage/TeamCreative.png",
-        link: "https://www.linkedin.com/in/zehanghifari/",
+        name: "Agung Satria Susanto",
+        title: "Legal Officer",
+        description: "Legal Writing Bagi Praktisi Hukum",
+        course: "HukumOnline",
+        link_course: "https://www.hukumonline.com/",
+        image: "/Aboutpage/TeamLegal.png",
+        link: "https://www.linkedin.com/in/agung-satria-susanto-22a136290/",
     },
     {
         id: 4,
         name: "Arif Febriansyah",
-        description: "SS Group cultivates teamwork and shared success.",
+        title: "IT Manager",
+        description: "MTCNA and MTCRE Certification",
+        course: "MikroTik",
+        link_course: "https://mikrotik.com/",
         image: "/Aboutpage/TeamIT.png",
         link: "https://www.linkedin.com/in/ariffebri/",
     },
     {
         id: 5,
         name: "Reynaldi Ramadhani",
-        description: "Supportive leadership empowers every individual here.",
+        title: "Human Capital and Legal Manager",
+        description: "HR Leadership, Strategic, and Project Management",
+        course: "Udemy",
+        link_course: "https://udemy.com",
         image: "/Aboutpage/TeamHR.png",
         link: "https://www.linkedin.com/in/reynaldiramadhani/",
     },
@@ -58,16 +73,16 @@ export default function TeamSlider() {
     };
 
     return (
-        <div className="flex flex-col lg:flex-row-reverse items-center justify-center bg-primary rounded-2xl p-0 xl:pr-20 w-full max-w-7xl mx-auto gap-14 xl:gap-0">
+        <div className="flex flex-col lg:flex-row-reverse items-center justify-center bg-primary rounded-2xl p-0 pb-8 lg:pb-0 xl:pr-20 w-full max-w-7xl mx-auto gap-14 xl:gap-0 px-8 xl:px-0">
             {/* IMAGE SECTION */}
-            <div className="relative w-80 h-96 lg:w-96 lg:h-[500px] xl:ml-10 overflow-clip">
-                <div className="absolute -bottom-20 w-96 h-96 bg-[#292929] rounded-full left-1/2 transform -translate-x-1/2"></div>
+            <div className="relative w-60 h-96 lg:w-96 lg:h-[500px] xl:ml-10 overflow-y-clip">
+                <div className="absolute -bottom-20 w-70 h-70 md:w-96 md:h-96 bg-[#292929] rounded-full left-1/2 transform -translate-x-1/2"></div>
                 <AnimatePresence mode="wait">
                     <motion.img
                         key={teamData[currentIndex].image}
                         src={teamData[currentIndex].image}
                         alt={teamData[currentIndex].name}
-                        className="absolute w-full bottom-0 object-cover rounded-lg bg-transparent scale-x-[-1]"
+                        className="absolute w-72 md:w-full bottom-0 object-cover rounded-lg bg-transparent scale-x-[-1]"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -90,22 +105,43 @@ export default function TeamSlider() {
                         transition={{ duration: 0.5 }}
                         className="w-full flex-1 relative"
                     >
-                        <div className="flex flex-col gap-20 text-white">
-                            <h2 className="font-poppins text-5xl">
-                                "{teamData[currentIndex].description}"
-                            </h2>
-                            <div className="flex font-poppins items-center gap-2">
-                                <img
-                                    src="/home/LinkedIn.png"
-                                    alt="LinkedIn"
-                                    className="w-8 h-8"
-                                />
+                        <div className="flex flex-col gap-16    text-white">
+                            <div className="flex flex-col gap-4">
+                                <h2 className="font-poppins text-3xl xl:text-5xl">
+                                    {teamData[currentIndex].description}
+                                </h2>
+                                <a
+                                    href={teamData[currentIndex].link_course}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <span>
+                                        - by {teamData[currentIndex].course}
+                                    </span>
+                                </a>
+                            </div>
+                            <div className="flex flex-col font-poppins items-start gap-2">
                                 <a
                                     href={teamData[currentIndex].link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="font-medium"
                                 >
-                                    {teamData[currentIndex].name}
+                                    <img
+                                        src="/home/LinkedIn.png"
+                                        alt="LinkedIn"
+                                        className="w-8 h-8"
+                                        loading="lazy"
+                                    />
                                 </a>
+                                <div>
+                                    <h2 className="font-semibold">
+                                        {teamData[currentIndex].name}
+                                    </h2>
+                                    <h2 className="">
+                                        {teamData[currentIndex].title}
+                                    </h2>
+                                </div>
                             </div>
                         </div>
                     </motion.div>

@@ -1,0 +1,197 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CircularGallery from "../components/ReactIslands/CircularGallery";
+import TrueFocus from "../components/ReactIslands/TrueFocus";
+import BentoValues from "../components/ReactIslands/BentoValues";
+import CarouselCulture from "../components/ReactIslands/CarouselCulture";
+import TeamSlider from "../components/ReactIslands/TeamSlider";
+
+const title = "#insideSSGroup";
+---
+
+<Layout title={title}>
+    <section class="w-full lg:h-[100dvh] pt-36 2xl:pt-32 2xl:pb-10 relative">
+        <div class="flex flex-col items-center justify-end h-full">
+            <div class="max-w-4xl px-10 md:px-20">
+                <h1
+                    class="font-poppins text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium text-center"
+                >
+                    By sharing
+
+                    <TrueFocus
+                        sentence="#InsideSSGroup stories,"
+                        manualMode={false}
+                        blurAmount={2}
+                        borderColor="#D2AC47"
+                        animationDuration={1}
+                        pauseBetweenAnimations={1}
+                        client:load
+                    />
+                    we hope to spark inspiration and connection.
+                </h1>
+                <h2 class="font-poppins text-[#707070] text-center mt-2">
+                    {
+                        `In the fast-paced world of skincare and fashion, we’ve
+                    learned that the little things shape the bigger picture.
+                    Every moments matters. Each day, we begin with good vibes,
+                    and genuine check-ins. As deadlines loom and ideas fly, what
+                    keeps us grounded is the care we extend to one another.`
+                    }
+                </h2>
+            </div>
+
+            <CircularGallery
+                bend={3}
+                textColor="#ffffff"
+                borderRadius={0.05}
+                client:load
+            />
+        </div>
+    </section>
+    <section class="w-full flex items-center justify-center py-32">
+        <div
+            class="container flex flex-col px-10 md:px-6 lg:px-20 xl:px-32 m-auto"
+        >
+            <div class="mb-8">
+                <h1
+                    class="font-poppins text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-medium max-w-2xl"
+                >
+                    <span class="text-primary"> SS Group Indonesia </span>{" "}
+                    - Company Values
+                </h1>
+                <h2
+                    class="font-poppins text-[#707070] max-w-lg lg:text-sm xl:text-sm 2xl:text-base mt-2"
+                >
+                    Our core values shape the way we work at SS Group—driving
+                    every innovation, collaboration, and strategic decision.
+                </h2>
+            </div>
+            <BentoValues client:load />
+        </div>
+    </section>
+    <section
+        class="w-full flex items-center justify-center py-20 xl:py-32 bg-primary"
+    >
+        <div
+            class="container flex flex-col px-10 md:20 xl:px-32 items-center justify-center gap-8"
+        >
+            <div>
+                <h1
+                    class="font-poppins text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-medium text-white text-center"
+                >
+                    SS Group Indonesia - Company Culture
+                </h1>
+                <h2
+                    class="font-poppins text-neutral-200 lg:text-sm xl:text-sm 2xl:text-base mt-2 text-center"
+                >
+                    At SS Group, our culture is rooted in openness,
+                    collaboration, and a growth mindset—where great ideas and
+                    exceptional talent come together.
+                </h2>
+            </div>
+            <CarouselCulture
+                baseWidth={400}
+                autoplay={true}
+                autoplayDelay={3000}
+                pauseOnHover={false}
+                loop={true}
+                round={true}
+                client:load
+            />
+        </div>
+    </section>
+    <section class="w-full flex items-center justify-center py-20 xl:py-32">
+        <div
+            class="container w-full h-full px-10 md:px-20 xl:px-32 flex-col flex"
+        >
+            <div class="mb-8">
+                <h1
+                    class="font-poppins text-3xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-medium max-w-2xl"
+                >
+                    <span class="text-primary"> #InsideSSGroup </span>{" "}
+                    "Talent Development Program"
+                </h1>
+                <h2
+                    class="font-poppins text-[#707070] max-w-lg lg:text-sm xl:text-sm 2xl:text-base mt-2"
+                >
+                    Testimoni Talent Development Program #InsideSSSGroup
+                </h2>
+            </div>
+            <TeamSlider client:load />
+        </div>
+    </section>
+    <section class="w-full flex items-center justify-center pb-32">
+        <div
+            class="container w-full h-full px-10 md:px-20 xl:px-32 flex flex-col gap-8"
+        >
+            <div
+                class="w-full min-h-[60vh] grid
+            grid-cols-2
+            sm:grid-cols-3
+            md:grid-cols-4
+            lg:grid-cols-5
+            md:grid-rows-8
+            grid-rows-10
+            gap-4 md:gap-6"
+            >
+                <div
+                    class="row-span-2 md:row-span-4 rounded-xl transition-all hover:scale-110 duration-300 ease-in-out bg-[url('/gallery/15.png')] bg-cover bg-center"
+                >
+                </div>
+                <div
+                    class="row-span-2 md:row-span-3 rounded-xl transition-all hover:scale-110 duration-300 ease-in-out bg-[url('/gallery/11.png')] bg-cover bg-center"
+                >
+                </div>
+                <div
+                    class="row-span-2 md:row-span-3 rounded-xl transition-all hover:scale-110 duration-300 ease-in-out bg-[url('/gallery/12.png')] bg-cover bg-center"
+                >
+                </div>
+                <div
+                    class="row-span-2 md:row-span-3 rounded-xl transition-all hover:scale-110 duration-300 ease-in-out bg-[url('/gallery/13.png')] bg-cover bg-center"
+                >
+                </div>
+                <div
+                    class="row-span-2 md:row-span-3 rounded-xl transition-all hover:scale-110 duration-300 ease-in-out bg-[url('/gallery/14.png')] bg-cover bg-center"
+                >
+                </div>
+                <div
+                    class="row-span-2 md:row-span-3 rounded-xl transition-all hover:scale-110 duration-300 ease-in-out bg-[url('/gallery/16.png')] bg-cover bg-center"
+                >
+                </div>
+                <div
+                    class="row-span-2 md:row-span-2 rounded-xl transition-all hover:scale-110 duration-300 ease-in-out bg-[url('/gallery/19.png')] bg-cover bg-center"
+                >
+                </div>
+                <div
+                    class="row-span-2 md:row-span-3 rounded-xl transition-all hover:scale-110 duration-300 ease-in-out bg-[url('/gallery/18.png')] bg-cover bg-center"
+                >
+                </div>
+                <div
+                    class="row-span-2 md:row-span-2 rounded-xl transition-all hover:scale-110 duration-300 ease-in-out bg-[url('/gallery/17.png')] bg-cover bg-center"
+                >
+                </div>
+                <div
+                    class="row-span-2 md:row-span-4 rounded-xl transition-all hover:scale-110 duration-300 ease-in-out bg-[url('/gallery/20.png')] bg-cover bg-left"
+                >
+                </div>
+            </div>
+
+            <div
+                class="w-full flex justify-center md:justify-end md:-mt-20 2xl:-mt-28"
+            >
+                <div class="text-center md:text-right">
+                    <h1
+                        class="font-poppins text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium"
+                    >
+                        <span class="text-primary">Our</span> Gallery
+                    </h1>
+                    <h2
+                        class="font-poppins text-[#707070] text-sm md:text-base"
+                    >
+                        Lots of stories in the #InsideSSGroup
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
