@@ -1,0 +1,83 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getAllJobs } from "../../services/jobsService";
+import FormApply from "../../components/ReactIslands/FormApply";
+
+export async function getStaticPaths() {
+    try {
+        const brands = await getAllJobs();
+        return brands
+            .filter((b) => !!b.id_title)
+            .map((b) => ({ params: { slug: b.id_title } }));
+    } catch (err) {
+        console.error("❌ Error getAllBrands:", err);
+        return [];
+    }
+}
+
+const { slug } = Astro.params;
+---
+
+<Layout>
+    <section class="w-full items-start justify-center pt-20 md:pt-32 mb-20">
+        <div
+            class="container flex flex-col px-10 lg:px-20 xl:px-32 items-center m-auto"
+        >
+            <div
+                class="w-full flex items-center justify-start py-6 border-b-[1px] border-neutral-300"
+            >
+                <div class="flex items-center gap-2 md:gap-4">
+                    <a
+                        href="/"
+                        class="font-poppins text-[#292929] text-xs md:text-base"
+                        >Career</a
+                    >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                    >
+                        <path
+                            d="M5.29344 1.63556C5.10597 1.82309 5.00065 2.0774 5.00065 2.34256C5.00065 2.60772 5.10597 2.86203 5.29344 3.04956L10.2434 7.99956L5.29344 12.9496C5.11128 13.1382 5.01049 13.3908 5.01277 13.653C5.01504 13.9152 5.12021 14.166 5.30562 14.3514C5.49103 14.5368 5.74184 14.642 6.00404 14.6442C6.26624 14.6465 6.51884 14.5457 6.70744 14.3636L12.3644 8.70656C12.5519 8.51903 12.6572 8.26472 12.6572 7.99956C12.6572 7.7344 12.5519 7.48009 12.3644 7.29256L6.70744 1.63556C6.51991 1.44809 6.2656 1.34277 6.00044 1.34277C5.73528 1.34277 5.48097 1.44809 5.29344 1.63556Z"
+                            fill="#707070"></path>
+                    </svg>
+                    <a
+                        href=`/${slug}`
+                        class="font-poppins text-[#292929] text-xs md:text-base"
+                        >{slug}</a
+                    >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                    >
+                        <path
+                            d="M5.29344 1.63556C5.10597 1.82309 5.00065 2.0774 5.00065 2.34256C5.00065 2.60772 5.10597 2.86203 5.29344 3.04956L10.2434 7.99956L5.29344 12.9496C5.11128 13.1382 5.01049 13.3908 5.01277 13.653C5.01504 13.9152 5.12021 14.166 5.30562 14.3514C5.49103 14.5368 5.74184 14.642 6.00404 14.6442C6.26624 14.6465 6.51884 14.5457 6.70744 14.3636L12.3644 8.70656C12.5519 8.51903 12.6572 8.26472 12.6572 7.99956C12.6572 7.7344 12.5519 7.48009 12.3644 7.29256L6.70744 1.63556C6.51991 1.44809 6.2656 1.34277 6.00044 1.34277C5.73528 1.34277 5.48097 1.44809 5.29344 1.63556Z"
+                            fill="#707070"></path>
+                    </svg>
+                    <a
+                        href=`/${slug}/form`
+                        class="font-poppins text-primary text-xs md:text-base"
+                        >Form</a
+                    >
+                </div>
+            </div>
+            <div class="w-full mt-8 flex flex-col gap-4 md:px-20">
+                <h2 class="font-poppins text-lg text-[#707070]">
+                    You're applying for
+                </h2>
+                <h1 class="font-poppins text-5xl text-primary">{slug}</h1>
+                <h2 class="font-poppins text-lg text-[#707070]">
+                    Jakarta, Indonesia
+                </h2>
+            </div>
+            <div class="w-full md:px-20 mt-12">
+                <FormApply client:load />
+            </div>
+        </div>
+    </section>
+</Layout>

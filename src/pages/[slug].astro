@@ -1,0 +1,310 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getAllJobs } from "../services/jobsService";
+import ShareJobs from "../components/ReactIslands/ShareJobs";
+
+export async function getStaticPaths() {
+    try {
+        const brands = await getAllJobs();
+        return brands
+            .filter((b) => !!b.id_title)
+            .map((b) => ({ params: { slug: b.id_title } }));
+    } catch (err) {
+        console.error("❌ Error getAllBrands:", err);
+        return [];
+    }
+}
+
+const { slug } = Astro.params;
+
+// let data: Brand | null = null;
+let isError = false;
+let isLoading = true;
+---
+
+<Layout title={slug}>
+    <section class="flex items-start justify-center pt-20 md:pt-32 mb-20">
+        <div
+            class="container flex flex-col px-10 md:px-20 xl:px-32 items-center"
+        >
+            <div
+                class="w-full flex items-center justify-start py-6 border-b-[1px] border-neutral-300"
+            >
+                <div class="flex items-center gap-4">
+                    <a href="/" class="font-poppins">Career</a>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                    >
+                        <path
+                            d="M5.29344 1.63556C5.10597 1.82309 5.00065 2.0774 5.00065 2.34256C5.00065 2.60772 5.10597 2.86203 5.29344 3.04956L10.2434 7.99956L5.29344 12.9496C5.11128 13.1382 5.01049 13.3908 5.01277 13.653C5.01504 13.9152 5.12021 14.166 5.30562 14.3514C5.49103 14.5368 5.74184 14.642 6.00404 14.6442C6.26624 14.6465 6.51884 14.5457 6.70744 14.3636L12.3644 8.70656C12.5519 8.51903 12.6572 8.26472 12.6572 7.99956C12.6572 7.7344 12.5519 7.48009 12.3644 7.29256L6.70744 1.63556C6.51991 1.44809 6.2656 1.34277 6.00044 1.34277C5.73528 1.34277 5.48097 1.44809 5.29344 1.63556Z"
+                            fill="#707070"></path>
+                    </svg>
+                    <a href=`/${slug}` class="font-poppins text-primary"
+                        >{slug}</a
+                    >
+                </div>
+            </div>
+            <div class="w-full pt-10 md:pt-20 xl:px-32 md:px-20">
+                <div
+                    class="flex items-start md:items-end justify-between flex-col md:flex-row gap-8"
+                >
+                    <div>
+                        <h2 class="font-poppins text-xl text-[#707070]">IT</h2>
+                        <h1 class="font-poppins text-4xl text-primary">
+                            {slug}
+                        </h1>
+                        <h2 class="font-poppins text-[#707070] text-sm">
+                            Posted 2 days ago
+                        </h2>
+                    </div>
+                    <div class="flex gap-1 flex-col">
+                        <div class="flex gap-4">
+                            <a href={`/${slug}/form`}>
+                                <button
+                                    class="relative inline-block px-6 font-semibold leading-6 text-white font-poppins bg-primary shadow-2xl cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-amber-400"
+                                >
+                                    <span
+                                        class="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-amber-300 to-amber-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                                    ></span>
+                                    <span
+                                        class="relative z-10 block px-6 py-3 rounded-2xl bg-primary"
+                                    >
+                                        <div
+                                            class="relative z-10 flex items-center space-x-3"
+                                        >
+                                            <span
+                                                class="transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white text-xs xl:text-sm 2xl:text-base"
+                                            >
+                                                Apply
+                                            </span>
+                                        </div>
+                                    </span>
+                                </button>
+                            </a>
+                            <ShareJobs title={slug} client:load />
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-full rounded-2xl border-[1px] border-[#9c9c9c] mt-6 md:mt-12 items-center p-6 grid grid-cols-2 md:grid-cols-4 gap-4"
+                >
+                    <div>
+                        <h2
+                            class="text-xs text-neutral-400 uppercase tracking-wide"
+                        >
+                            Brand
+                        </h2>
+                        <h3 class="font-medium text-neutral-800 mt-2">
+                            SS Skin
+                        </h3>
+                    </div>
+
+                    <div>
+                        <h2
+                            class="text-xs text-neutral-400 uppercase tracking-wide"
+                        >
+                            Level
+                        </h2>
+                        <h3 class="font-medium text-neutral-800 mt-2">
+                            Junior
+                        </h3>
+                    </div>
+
+                    <div>
+                        <h2
+                            class="text-xs text-neutral-400 uppercase tracking-wide"
+                        >
+                            Contract
+                        </h2>
+                        <h3 class="font-medium text-neutral-800 mt-2">
+                            Full Time
+                        </h3>
+                    </div>
+
+                    <div>
+                        <h2
+                            class="text-xs text-neutral-400 uppercase tracking-wide"
+                        >
+                            Deadline
+                        </h2>
+                        <h3 class="font-medium text-neutral-800 mt-2">
+                            30 Maret 2025
+                        </h3>
+                    </div>
+                </div>
+                <div class="flex items-start mt-4 gap-2">
+                    <h2 class="font-poppins text-[#707070] text-sm mt-1">
+                        Skill
+                    </h2>
+                    <div class="w-full flex gap-2 md:gap-4 flex-wrap">
+                        <div
+                            class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins"
+                        >
+                            React.js
+                        </div>
+                        <div
+                            class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins"
+                        >
+                            React Native
+                        </div>
+                        <div
+                            class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins"
+                        >
+                            Tailwind CSS
+                        </div>
+                        <div
+                            class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins"
+                        >
+                            Node.js
+                        </div>
+                        <div
+                            class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins"
+                        >
+                            Next.js
+                        </div>
+                    </div>
+                </div>
+                <div class="fleax flex-col">
+                    <h2
+                        class="font-poppins text-[#292929] mt-12 text-xl font-medium"
+                    >
+                        Job Description
+                    </h2>
+                    <div class="w-full flex flex-col gap-4 mt-4">
+                        <div class="w-full flex gap-4">
+                            <div class="text-sm text-[#707070] font-poppins">
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur
+                                    adipisicing elit. Iure in minus est dolores
+                                    optio, quas facere quasi architecto officiis
+                                    inventore illum beatae laboriosam nobis,
+                                    voluptatem illo non itaque sint
+                                    consequuntur. Accusamus, temporibus
+                                    voluptatibus necessitatibus, dignissimos
+                                    velit sunt ex saepe deleniti, at esse
+                                    dolores hic corrupti modi tenetur nihil?
+                                    Animi, consectetur obcaecati. Consequuntur
+                                    ut dolores omnis beatae nemo praesentium
+                                    dolorum tempora? Ratione repudiandae
+                                    reiciendis ipsum accusamus sint numquam
+                                    necessitatibus odio facere recusandae maxime
+                                    vitae hic nostrum quam, explicabo eius esse
+                                    corrupti quo quas provident distinctio omnis
+                                    beatae laboriosam harum alias! Vitae. Non
+                                    beatae atque accusamus nulla, voluptate
+                                    molestiae corrupti blanditiis quisquam, eius
+                                    cum tenetur pariatur sequi quibusdam
+                                    mollitia iusto libero adipisci! Iusto
+                                    perferendis dignissimos mollitia vel
+                                    architecto nostrum expedita ipsum enim?
+                                </p>
+                                <ol class="list-disc ms-6 mt-2">
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fleax flex-col">
+                    <h2
+                        class="font-poppins text-[#292929] mt-12 text-xl font-medium"
+                    >
+                        Qualifications
+                    </h2>
+                    <div class="w-full flex flex-col gap-4 mt-2">
+                        <div class="w-full flex gap-4">
+                            <div class="text-sm text-[#707070] font-poppins">
+                                <ol class="list-decimal ms-6 mt-2">
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                    <li>Lorem ipsum dolor sit amet</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex items-center justify-center mt-12">
+                    <a href={`/${slug}/form`}>
+                        <button
+                            class="relative inline-block px-20 font-semibold leading-6 text-white font-poppins bg-primary shadow-2xl cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-amber-400"
+                        >
+                            <span
+                                class="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-amber-300 to-amber-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            ></span>
+                            <span
+                                class="relative z-10 block px-6 py-3 rounded-2xl bg-primary"
+                            >
+                                <div
+                                    class="relative z-10 flex items-center space-x-3"
+                                >
+                                    <span
+                                        class="transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white text-xs xl:text-sm 2xl:text-base"
+                                    >
+                                        Apply
+                                    </span>
+                                </div>
+                            </span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="w-full pb-20">
+        <div class="container m-auto xl:px-32 md:px-20 px-10">
+            <div
+                class="bg-[url('/Banner.png')] bg-cover bg-center md:bg-top bg-no-repeat max-w-5xl h-72 m-auto rounded-2xl overflow-clip"
+            >
+                <div
+                    class="w-full h-full bg-primary/60 inset-0 flex items-center justify-between p-8 flex-col md:flex-row"
+                >
+                    <h2 class="text-white font-poppins text-4xl font-medium">
+                        See our Stories @SSGroup
+                    </h2>
+                    <div class="relative group">
+                        <a href={`/inside-ssgroup`}>
+                            <button
+                                class="relative inline-block p-px font-semibold leading-6 text-white bg-primary shadow-2xl cursor-pointer rounded-lg lg:rounded-2xl shadow-primary transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-amber-400"
+                            >
+                                <span
+                                    class="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-amber-300 to-amber-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                                ></span>
+                                <span
+                                    class="relative z-10 block px-6 py-3 rounded-2xl bg-primary"
+                                >
+                                    <div
+                                        class="relative z-10 flex items-center space-x-3"
+                                    >
+                                        <span
+                                            class="transition-all duration-500 group-hover:translate-x-1.5 group-hover:text-white text-xs xl:text-sm 2xl:text-base"
+                                        >
+                                            #InsideSSGroup
+                                        </span>
+                                    </div>
+                                </span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section></Layout
+>

@@ -14,6 +14,10 @@ type Job = {
     deadline: string;
 };
 
+function toSlug(title: string): string {
+    return title.toLowerCase().replace(/\s+/g, "-");
+}
+
 export function JobSearch(): ReactElement {
     const [search, setSearch] = useState<string>("");
 
