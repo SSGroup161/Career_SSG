@@ -5,6 +5,7 @@ import { Searchbar } from "./Searchbar";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Job = {
+    id_title: string;
     title: string;
     location: string;
     department: string;
@@ -32,49 +33,34 @@ export function JobSearch(): ReactElement {
 
     const jobs: Job[] = [
         {
-            title: "Frontend Developer",
-            location: "Jakarta",
-            department: "IT",
-            level: "Junior",
+            id_title: "live-stream-operator",
+            title: "Live Stream Operator",
+            location: "On Site",
+            department: "E-Commerce",
+            level: "Middle",
             contract: "Full Time",
             brand: "SS Skin",
             deadline: "2024-12-31",
         },
         {
-            title: "UI/UX Designer",
-            location: "Bandung",
-            department: "Design",
+            id_title: "host-live-stream",
+            title: "Host Live Stream",
+            location: "On Site",
+            department: "E-Commerce",
             level: "Middle",
-            contract: "Internship",
+            contract: "Full Time",
             brand: "SS Skin",
             deadline: "2024-11-15",
         },
         {
-            title: "Digital Marketing Specialist",
-            location: "Remote",
+            id_title: "marketing-specialist",
+            title: "Marketing Specialist",
+            location: "On Site",
             department: "Marketing",
             level: "Senior",
-            contract: "Freelance",
-            brand: "Shellasaukia.co",
+            contract: "Full Time",
+            brand: "SS Skin",
             deadline: "2024-10-10",
-        },
-        {
-            title: "Admin Marketplace",
-            location: "Jakarta",
-            department: "E-commerce",
-            level: "Junior",
-            contract: "Full Time",
-            brand: "SS Your Makeup",
-            deadline: "2024-09-01",
-        },
-        {
-            title: "Creative Director",
-            location: "Remote",
-            department: "Creative",
-            level: "Senior",
-            contract: "Full Time",
-            brand: "SS Group",
-            deadline: "2024-12-01",
         },
     ];
 
@@ -160,54 +146,57 @@ export function JobSearch(): ReactElement {
                                             duration: 0.3,
                                             delay: idx * 0.05,
                                         }}
-                                        className="bg-white hover:bg-neutral-100 transition py-10 px-4 border-b-2 gap-4 md:gap- border-gray-200 cursor-pointer font-poppins flex items-start justify-startmd:justify-between md:items-center flex-col md:flex-row"
                                     >
-                                        <div className="min-w-72 max-w-80">
-                                            <h2 className="text-lg font-semibold text-neutral-800">
-                                                {job.title}
-                                            </h2>
-                                            <h3 className="text-primary font-medium text-sm">
-                                                {job.department}
-                                            </h3>
-                                        </div>
+                                        <a
+                                            href={`/${job.id_title}`}
+                                            className="block bg-white hover:bg-neutral-100 transition py-10 px-4 border-b-2 border-gray-200 cursor-pointer font-poppins"
+                                        >
+                                            <div className="flex items-start justify-start md:justify-between md:items-center flex-col md:flex-row gap-4">
+                                                <div className="min-w-72 max-w-80">
+                                                    <h2 className="text-lg font-semibold text-neutral-800">
+                                                        {job.title}
+                                                    </h2>
+                                                    <h3 className="text-primary font-medium text-sm">
+                                                        {job.department}
+                                                    </h3>
+                                                </div>
 
-                                        <div className="w-full grid grid-cols-2 gap-4 md:grid-cols-4">
-                                            <div>
-                                                <h2 className="text-xs text-neutral-400 uppercase tracking-wide">
-                                                    Brand
-                                                </h2>
-                                                <h3 className=" font-medium text-neutral-800">
-                                                    {job.brand}
-                                                </h3>
+                                                <div className="w-full grid grid-cols-2 gap-4 md:grid-cols-4">
+                                                    <div>
+                                                        <h2 className="text-xs text-neutral-400 uppercase tracking-wide">
+                                                            Brand
+                                                        </h2>
+                                                        <h3 className="font-medium text-neutral-800">
+                                                            {job.brand}
+                                                        </h3>
+                                                    </div>
+                                                    <div>
+                                                        <h2 className="text-xs text-neutral-400 uppercase tracking-wide">
+                                                            Level
+                                                        </h2>
+                                                        <h3 className="font-medium text-neutral-800">
+                                                            {job.level}
+                                                        </h3>
+                                                    </div>
+                                                    <div>
+                                                        <h2 className="text-xs text-neutral-400 uppercase tracking-wide">
+                                                            Contract
+                                                        </h2>
+                                                        <h3 className="font-medium text-neutral-800">
+                                                            {job.contract}
+                                                        </h3>
+                                                    </div>
+                                                    <div>
+                                                        <h2 className="text-xs text-neutral-400 uppercase tracking-wide">
+                                                            Location
+                                                        </h2>
+                                                        <h3 className="font-medium text-neutral-800">
+                                                            {job.location}
+                                                        </h3>
+                                                    </div>
+                                                </div>
                                             </div>
-
-                                            <div>
-                                                <h2 className="text-xs text-neutral-400 uppercase tracking-wide">
-                                                    Level
-                                                </h2>
-                                                <h3 className=" font-medium text-neutral-800">
-                                                    {job.level}
-                                                </h3>
-                                            </div>
-
-                                            <div>
-                                                <h2 className="text-xs text-neutral-400 uppercase tracking-wide">
-                                                    Contract
-                                                </h2>
-                                                <h3 className=" font-medium text-neutral-800">
-                                                    {job.contract}
-                                                </h3>
-                                            </div>
-
-                                            <div>
-                                                <h2 className="text-xs text-neutral-400 uppercase tracking-wide">
-                                                    Deadline
-                                                </h2>
-                                                <h3 className=" font-medium text-neutral-800">
-                                                    {job.deadline}
-                                                </h3>
-                                            </div>
-                                        </div>
+                                        </a>
                                     </motion.li>
                                 ))}
                             </motion.ul>

@@ -6,8 +6,25 @@ import {
     CheckCircleOutlined,
     CloseCircleOutlined,
 } from "@ant-design/icons";
+import { toast, Toaster } from "sonner";
 
-export default function FormApply() {
+interface FormApplyProps {
+    jobTitle?: string;
+}
+
+const toBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const base64 = (reader.result as string).split(",")[1];
+            resolve(base64);
+        };
+        reader.onerror = (error) => reject(error);
+    });
+};
+
+export default function FormApply({ jobTitle }: FormApplyProps) {
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -33,6 +50,8 @@ export default function FormApply() {
     const [scanning, setScanning] = useState<
         "idle" | "loading" | "success" | "failed"
     >("idle");
+
+    const [loading, setLoading] = useState(false);
 
     const validate = () => {
         const newErrors = { name: "", email: "", phone: "", cv: "" };
@@ -118,10 +137,105 @@ export default function FormApply() {
         setForm((prev) => ({ ...prev, [name]: formatted }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const toBase64 = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base64 = (reader.result as string).split(",")[1];
+                resolve(base64);
+            };
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
+    const uploadFile = async (file: File, type: "cv" | "portfolio") => {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const response = await fetch(
+            `https://ssgcloud.my.id/upload.php?type=${type}`,
+            {
+                method: "POST",
+                body: formData,
+            }
+        );
+
+        if (!response.ok) throw new Error("Upload failed");
+        const result = await response.json();
+        return result.url;
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (validate()) {
-            console.log("Form is valid:", form);
+        if (!validate()) return;
+        setLoading(true);
+
+        try {
+            let cvUrl = "";
+            let portfolioUrl = "";
+
+            if (form.cv) {
+                cvUrl = await uploadFile(form.cv, "cv");
+            }
+            if (form.portfoliofile) {
+                portfolioUrl = await uploadFile(
+                    form.portfoliofile,
+                    "portfolio"
+                );
+            }
+
+            const payload = new URLSearchParams();
+            payload.append("position", jobTitle || "");
+            payload.append("name", form.name);
+            payload.append("email", form.email);
+            payload.append("phone", form.phone);
+            payload.append("domicile", form.domicile);
+            payload.append("employeeStatus", form.employee_status);
+            payload.append("lastSalary", form.lastsalary);
+            payload.append("expectedSalary", form.exsalary);
+            payload.append("linkedin", form.linkedin);
+            payload.append("portfolioLink", form.portfolio);
+            payload.append("cvFileLink", cvUrl);
+            payload.append("portfolioFileLink", portfolioUrl);
+
+            const res = await fetch(
+                "https://script.google.com/macros/s/AKfycbxxOskzK6yAW1pNGlQgilYO7cjmQeWLAcXZf1syILk-JJtsibMGECzLHyta9iPo6_Ys/exec",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: payload.toString(),
+                    mode: "cors",
+                }
+            );
+
+            if (res.ok) {
+                toast.success("🎉 Application submitted successfully!");
+                setForm({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    domicile: "",
+                    cv: null,
+                    cvLabel: "Attach your CV",
+                    employee_status: "",
+                    lastsalary: "",
+                    exsalary: "",
+                    linkedin: "",
+                    portfolio: "",
+                    portfoliofile: null,
+                    portfoliofileName: "",
+                });
+            } else {
+                toast.error("❌ Submission failed.");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("❌ Error occurred during submission.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -151,6 +265,7 @@ export default function FormApply() {
             onSubmit={handleSubmit}
             className="max-w-xl mx-auto space-y-4 bg-white"
         >
+            <Toaster position="top-center" richColors />
             <div>
                 <div className="flex items-center flex-wrap">
                     <label className="mr-2 font-poppins text-sm">
@@ -399,9 +514,14 @@ export default function FormApply() {
 
             <button
                 type="submit"
-                className="w-full bg-primary text-white py-2 rounded-lg hover:bg-[#C8991B] transition cursor-pointer"
+                disabled={loading}
+                className={`w-full bg-primary text-white py-2 rounded-lg transition cursor-pointer ${
+                    loading
+                        ? "opacity-70 cursor-not-allowed"
+                        : "hover:bg-[#C8991B]"
+                }`}
             >
-                Apply
+                {loading ? "Submitting..." : "Apply"}
             </button>
         </form>
     );

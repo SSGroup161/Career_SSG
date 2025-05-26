@@ -1,21 +1,33 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getAllJobs } from "../../services/jobsService";
+import type { Job } from "../../services/jobsService";
 import FormApply from "../../components/ReactIslands/FormApply";
 
 export async function getStaticPaths() {
     try {
-        const brands = await getAllJobs();
-        return brands
-            .filter((b) => !!b.id_title)
-            .map((b) => ({ params: { slug: b.id_title } }));
+        const jobs = await getAllJobs();
+        return jobs.map((job) => ({ params: { slug: job.id_title } }));
     } catch (err) {
-        console.error("❌ Error getAllBrands:", err);
+        console.error("❌ Error in getStaticPaths:", err);
         return [];
     }
 }
 
 const { slug } = Astro.params;
+let job: Job | undefined;
+let isError = false;
+
+try {
+    const jobs = await getAllJobs();
+    job = jobs.find((j) => j.id_title === slug);
+    if (!job) {
+        isError = true;
+    }
+} catch (err) {
+    console.error("❌ Error fetching job data:", err);
+    isError = true;
+}
 ---
 
 <Layout>
@@ -44,9 +56,9 @@ const { slug } = Astro.params;
                             fill="#707070"></path>
                     </svg>
                     <a
-                        href=`/${slug}`
+                        href=`/${job?.id_title}`
                         class="font-poppins text-[#292929] text-xs md:text-base"
-                        >{slug}</a
+                        >{job?.title}</a
                     >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +72,7 @@ const { slug } = Astro.params;
                             fill="#707070"></path>
                     </svg>
                     <a
-                        href=`/${slug}/form`
+                        href=`/${job?.id_title}/form`
                         class="font-poppins text-primary text-xs md:text-base"
                         >Form</a
                     >
@@ -70,13 +82,13 @@ const { slug } = Astro.params;
                 <h2 class="font-poppins text-lg text-[#707070]">
                     You're applying for
                 </h2>
-                <h1 class="font-poppins text-5xl text-primary">{slug}</h1>
+                <h1 class="font-poppins text-5xl text-primary">{job?.title}</h1>
                 <h2 class="font-poppins text-lg text-[#707070]">
                     Jakarta, Indonesia
                 </h2>
             </div>
             <div class="w-full md:px-20 mt-12">
-                <FormApply client:load />
+                <FormApply jobTitle={job?.title} client:load />
             </div>
         </div>
     </section>

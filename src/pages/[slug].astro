@@ -1,25 +1,33 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getAllJobs } from "../services/jobsService";
+import type { Job } from "../services/jobsService";
 import ShareJobs from "../components/ReactIslands/ShareJobs";
 
 export async function getStaticPaths() {
     try {
-        const brands = await getAllJobs();
-        return brands
-            .filter((b) => !!b.id_title)
-            .map((b) => ({ params: { slug: b.id_title } }));
+        const jobs = await getAllJobs();
+        return jobs.map((job) => ({ params: { slug: job.id_title } }));
     } catch (err) {
-        console.error("❌ Error getAllBrands:", err);
+        console.error("❌ Error in getStaticPaths:", err);
         return [];
     }
 }
 
 const { slug } = Astro.params;
-
-// let data: Brand | null = null;
+let job: Job | undefined;
 let isError = false;
-let isLoading = true;
+
+try {
+    const jobs = await getAllJobs();
+    job = jobs.find((j) => j.id_title === slug);
+    if (!job) {
+        isError = true;
+    }
+} catch (err) {
+    console.error("❌ Error fetching job data:", err);
+    isError = true;
+}
 ---
 
 <Layout title={slug}>
@@ -43,8 +51,9 @@ let isLoading = true;
                             d="M5.29344 1.63556C5.10597 1.82309 5.00065 2.0774 5.00065 2.34256C5.00065 2.60772 5.10597 2.86203 5.29344 3.04956L10.2434 7.99956L5.29344 12.9496C5.11128 13.1382 5.01049 13.3908 5.01277 13.653C5.01504 13.9152 5.12021 14.166 5.30562 14.3514C5.49103 14.5368 5.74184 14.642 6.00404 14.6442C6.26624 14.6465 6.51884 14.5457 6.70744 14.3636L12.3644 8.70656C12.5519 8.51903 12.6572 8.26472 12.6572 7.99956C12.6572 7.7344 12.5519 7.48009 12.3644 7.29256L6.70744 1.63556C6.51991 1.44809 6.2656 1.34277 6.00044 1.34277C5.73528 1.34277 5.48097 1.44809 5.29344 1.63556Z"
                             fill="#707070"></path>
                     </svg>
-                    <a href=`/${slug}` class="font-poppins text-primary"
-                        >{slug}</a
+                    <a
+                        href=`/${job?.id_title}`
+                        class="font-poppins text-primary">{job?.title}</a
                     >
                 </div>
             </div>
@@ -53,17 +62,18 @@ let isLoading = true;
                     class="flex items-start md:items-end justify-between flex-col md:flex-row gap-8"
                 >
                     <div>
-                        <h2 class="font-poppins text-xl text-[#707070]">IT</h2>
-                        <h1 class="font-poppins text-4xl text-primary">
-                            {slug}
-                        </h1>
-                        <h2 class="font-poppins text-[#707070] text-sm">
-                            Posted 2 days ago
+                        <h2
+                            class="font-poppins text-xl text-[#707070] uppercase"
+                        >
+                            {job?.department}
                         </h2>
+                        <h1 class="font-poppins text-4xl text-primary">
+                            {job?.title}
+                        </h1>
                     </div>
                     <div class="flex gap-1 flex-col">
                         <div class="flex gap-4">
-                            <a href={`/${slug}/form`}>
+                            <a href={`/${job?.id_title}/form`}>
                                 <button
                                     class="relative inline-block px-6 font-semibold leading-6 text-white font-poppins bg-primary shadow-2xl cursor-pointer rounded-full transition-all duration-300 ease-in-out hover:scale-105 active:scale-95 hover:shadow-amber-400"
                                 >
@@ -85,7 +95,14 @@ let isLoading = true;
                                     </span>
                                 </button>
                             </a>
-                            <ShareJobs title={slug} client:load />
+                            {
+                                job && (
+                                    <ShareJobs
+                                        title={job.id_title}
+                                        client:load
+                                    />
+                                )
+                            }
                         </div>
                     </div>
                 </div>
@@ -99,7 +116,7 @@ let isLoading = true;
                             Brand
                         </h2>
                         <h3 class="font-medium text-neutral-800 mt-2">
-                            SS Skin
+                            {job?.brand}
                         </h3>
                     </div>
 
@@ -110,7 +127,7 @@ let isLoading = true;
                             Level
                         </h2>
                         <h3 class="font-medium text-neutral-800 mt-2">
-                            Junior
+                            {job?.level}
                         </h3>
                     </div>
 
@@ -121,7 +138,7 @@ let isLoading = true;
                             Contract
                         </h2>
                         <h3 class="font-medium text-neutral-800 mt-2">
-                            Full Time
+                            {job?.contract}
                         </h3>
                     </div>
 
@@ -129,10 +146,10 @@ let isLoading = true;
                         <h2
                             class="text-xs text-neutral-400 uppercase tracking-wide"
                         >
-                            Deadline
+                            Location
                         </h2>
                         <h3 class="font-medium text-neutral-800 mt-2">
-                            30 Maret 2025
+                            {job?.location}
                         </h3>
                     </div>
                 </div>
@@ -141,33 +158,16 @@ let isLoading = true;
                         Skill
                     </h2>
                     <div class="w-full flex gap-2 md:gap-4 flex-wrap">
-                        <div
-                            class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins"
-                        >
-                            React.js
-                        </div>
-                        <div
-                            class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins"
-                        >
-                            React Native
-                        </div>
-                        <div
-                            class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins"
-                        >
-                            Tailwind CSS
-                        </div>
-                        <div
-                            class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins"
-                        >
-                            Node.js
-                        </div>
-                        <div
-                            class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins"
-                        >
-                            Next.js
-                        </div>
+                        {
+                            job?.skills.map((skill) => (
+                                <div class="border border-[#707070] p-2 rounded-lg text-xs text-[#707070] font-poppins">
+                                    {skill}
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
+
                 <div class="fleax flex-col">
                     <h2
                         class="font-poppins text-[#292929] mt-12 text-xl font-medium"
@@ -178,37 +178,14 @@ let isLoading = true;
                         <div class="w-full flex gap-4">
                             <div class="text-sm text-[#707070] font-poppins">
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur
-                                    adipisicing elit. Iure in minus est dolores
-                                    optio, quas facere quasi architecto officiis
-                                    inventore illum beatae laboriosam nobis,
-                                    voluptatem illo non itaque sint
-                                    consequuntur. Accusamus, temporibus
-                                    voluptatibus necessitatibus, dignissimos
-                                    velit sunt ex saepe deleniti, at esse
-                                    dolores hic corrupti modi tenetur nihil?
-                                    Animi, consectetur obcaecati. Consequuntur
-                                    ut dolores omnis beatae nemo praesentium
-                                    dolorum tempora? Ratione repudiandae
-                                    reiciendis ipsum accusamus sint numquam
-                                    necessitatibus odio facere recusandae maxime
-                                    vitae hic nostrum quam, explicabo eius esse
-                                    corrupti quo quas provident distinctio omnis
-                                    beatae laboriosam harum alias! Vitae. Non
-                                    beatae atque accusamus nulla, voluptate
-                                    molestiae corrupti blanditiis quisquam, eius
-                                    cum tenetur pariatur sequi quibusdam
-                                    mollitia iusto libero adipisci! Iusto
-                                    perferendis dignissimos mollitia vel
-                                    architecto nostrum expedita ipsum enim?
+                                    {job?.jobDescription}
                                 </p>
                                 <ol class="list-disc ms-6 mt-2">
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
+                                    {
+                                        job?.responsibilities.map((item) => (
+                                            <li>{item}</li>
+                                        ))
+                                    }
                                 </ol>
                             </div>
                         </div>
@@ -224,18 +201,11 @@ let isLoading = true;
                         <div class="w-full flex gap-4">
                             <div class="text-sm text-[#707070] font-poppins">
                                 <ol class="list-decimal ms-6 mt-2">
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
-                                    <li>Lorem ipsum dolor sit amet</li>
+                                    {
+                                        job?.qualifications.map((item) => (
+                                            <li>{item}</li>
+                                        ))
+                                    }
                                 </ol>
                             </div>
                         </div>
