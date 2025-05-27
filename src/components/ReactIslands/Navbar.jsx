@@ -161,7 +161,7 @@ const Navbar = () => {
             </Drawer>
             <section className="fixed top-0 w-full z-50">
                 <div className="w-full h-10 bg-primary md:flex items-center hidden md:px-10 lg:px-28">
-                    <div className="container w-full m-auto flex items-center justify-between">
+                    <div className="container m-auto flex items-center justify-between">
                         <div className="flex items-center gap-4">
                             <div className="flex items-center gap-2 text-white text-xs">
                                 <svg
